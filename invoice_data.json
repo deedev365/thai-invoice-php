@@ -1,0 +1,113 @@
+{
+    "document": {
+        "title": "Invoice",
+        "page_label": "Page 1 of 2 (Original)",
+        "number": "-",
+        "issue_date": "-",
+        "credit": "7",
+        "due_date": "-",
+        "reference": "QDL-",
+        "project_name": "-"
+    },
+    "seller": {
+        "name": "Seller Name",
+        "address": "Company Name, Sukhumvit 1, Bangkok",
+        "tax_id": "12345678"
+    },
+    "customer": {
+        "name": "Customer Name",
+        "address": "Bangkok",
+        "tax_id": "123456789",
+        "phone": "123456789",
+        "email": "customeer@test.com"
+    },
+    "contact": {
+        "name": "Company Name",
+        "phone": "1234567",
+        "email": "info@gmail.com",
+        "line_icon_url": "https://down-th.img.susercontent.com/file/535e22ccc23a8db15d83215261a8b2dd",
+        "line_id": "@lineid"
+    },
+    "items": [
+        {
+            "name": "Sofa",
+            "detail": "This sofa very big and comfortable",
+            "qty": "21",
+            "price": "15000",
+            "discount": "10",
+            "vat": "7",
+            "pre_tax": "27000"
+        },
+        {
+            "name": "Table",
+            "detail": "This table very big and comfortable",
+            "qty": "2",
+            "price": "6000",
+            "discount": "20",
+            "vat": "7",
+            "pre_tax": "9600"
+        },
+        {
+            "name": "TV",
+            "detail": "This table very big and comfortable",
+            "qty": "1",
+            "price": "5000",
+            "discount": "0",
+            "vat": "7",
+            "pre_tax": "5000"
+        }
+    ],
+    "summary": {
+        "taxable_amount": "41,600 thb",
+        "vat_amount": "2,912 thb",
+        "withholding": "0.00 thb",
+        "total_amount": "44,512.00 thb",
+        "total_words": "forty-four thousand five hundred twelve",
+        "payable": "44,512.00 thb"
+    },
+    "banks": [
+        {
+            "logo_class": "kbank",
+            "logo_text": "KBank",
+            "bank_name": "Kasikorn Bannk",
+            "account_number": "123456789",
+            "account_name": "Test Account"
+        },
+        {
+            "logo_class": "scb",
+            "logo_text": "SCB",
+            "bank_name": "SCB bank",
+            "account_number": "123456789",
+            "account_name": "Test Account"
+        }
+    ],
+    "translate": {
+        "seller": "Seller",
+        "address": "Address",
+        "tax_id": "Tax ID",
+        "number": "Number",
+        "issue_date": "Issue Date",
+        "credit": "Credit",
+        "due_date": "Due Date",
+        "reference": "Reference",
+        "project_name": "Project Name",
+        "contancts": "Please contact me back",
+        "customer_name": "Name",
+        "customer_address": "Address",
+        "customer_tax_id": "Tax ID",
+        "items_description": "Description",
+        "items_quantity": "Quantity",
+        "items_price": "Price",
+        "items_discount": "Discount",
+        "items_vat": "VAT",
+        "items_amount_before_tax": "Before Tax",
+        "summary": "Summary",
+        "taxable_amount_7": "Taxable Amount (7% VAT)",
+        "vat_amount_7": "VAT (7%)",
+        "total_amount": "Total Amount",
+        "withholding_tax": "Withholding Tax",
+        "amount_payable": "Amount Payable",
+        "Payment": "payment"
+    },
+    "note": "detail note"
+}
