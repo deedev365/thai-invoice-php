@@ -1,0 +1,270 @@
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --accent: #e67e22;
+    --accent-dark: #bf6418;
+    --ink: #202124;
+    --muted: #687076;
+    --line: #dde3ea;
+    --panel: #ffffff;
+    --bg: #f4f6f8;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Sarabun, Arial, sans-serif;
+    font-size: 14px;
+  }
+
+  .shell {
+    width: min(1180px, calc(100vw - 32px));
+    margin: 0 auto;
+    padding: 24px 0 48px;
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.25;
+  }
+  
+  h1 a {
+    color: #e67e22;
+  }
+
+  .doc-number {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 3px;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .invoice-picker {
+    align-items: flex-end;
+    display: flex;
+    gap: 8px;
+  }
+
+  .invoice-picker label {
+    margin-bottom: 4px;
+  }
+
+  .invoice-picker select {
+    min-width: min(360px, 55vw);
+  }
+
+  .button,
+  button {
+    appearance: none;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 8px 14px;
+    font: 600 14px/1 Sarabun, Arial, sans-serif;
+    text-decoration: none;
+  }
+
+  .button.secondary,
+  button.secondary {
+    background: #fff;
+    color: var(--accent-dark);
+  }
+
+  .button.danger,
+  button.danger {
+    border-color: #d74d43;
+    background: #fff;
+    color: #b3362e;
+  }
+
+  .message,
+  .error {
+    border-radius: 6px;
+    margin: 0 0 16px;
+    padding: 11px 13px;
+    font-weight: 600;
+  }
+
+  .message {
+    background: #e7f8ee;
+    border: 1px solid #b7e4c7;
+    color: #216e3a;
+  }
+
+  .error {
+    background: #fff0f0;
+    border: 1px solid #f1b3ae;
+    color: #9c2d25;
+  }
+
+  form {
+    display: grid;
+    gap: 16px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 18px;
+    box-shadow: 0 8px 20px rgba(30, 42, 54, 0.05);
+  }
+
+  .panel.full {
+    grid-column: 1 / -1;
+  }
+
+  .panel-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 17px;
+  }
+
+  .fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .field.full {
+    grid-column: 1 / -1;
+  }
+
+  label {
+    color: #343a40;
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    border: 1px solid #cfd7df;
+    border-radius: 6px;
+    background: #fff;
+    color: var(--ink);
+    font: 400 14px/1.45 Sarabun, Arial, sans-serif;
+    padding: 8px 10px;
+  }
+
+  textarea {
+    min-height: 92px;
+    resize: vertical;
+  }
+
+  .repeat-list {
+    display: grid;
+    gap: 12px;
+  }
+
+  .repeat-row {
+    background: #fbfcfd;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px;
+  }
+
+  .row-title {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .row-title strong {
+    color: var(--accent-dark);
+    font-size: 14px;
+  }
+
+  .item-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 0.55fr 0.75fr 0.65fr 0.5fr 0.8fr;
+    gap: 10px;
+  }
+
+  .item-detail-field {
+    grid-column: 1 / -1;
+  }
+
+  .bank-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 0.8fr 1fr 1fr 1.4fr;
+    gap: 10px;
+  }
+
+  .sticky-save {
+    position: sticky;
+    bottom: 0;
+    z-index: 3;
+    background: rgba(244, 246, 248, 0.94);
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 14px 0 0;
+  }
+
+  @media (max-width: 860px) {
+    .topbar,
+    .invoice-picker,
+    .grid,
+    .fields,
+    .item-grid,
+    .bank-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .topbar {
+      align-items: stretch;
+      display: grid;
+    }
+
+    .actions {
+      justify-content: stretch;
+    }
+
+    .actions .button,
+    .actions button {
+      flex: 1;
+    }
+  }
