@@ -20,6 +20,17 @@ Comprehensive Data Formatting: Built-in calculation pipelines and clean-string s
 
 Dynamic Bank & Item Repeaters: Interactive Admin Panel layout allowing users to dynamically add, remove, and reindex multiple line-items, item descriptions, and banking payout details using native HTML5 templates.
 
+## 📖 How It Works
+
+### 1. Creating/Editing Documents (admin.php)
+The admin panel lets you pick an existing document from a dropdown menu populated chronologically by file modification time (filemtime). Selecting "New invoice" automatically fetches today's Thai time-zone date (Asia/Bangkok), checks the highest existing index code for that day, and buffers the form with safe template parameters.
+
+### 2. Form Saving & File Commit Workflow
+Upon hitting Save Invoice, the system processes the raw input payloads (POST), sanitizes strings via clean_string(), performs array normalization on itemized data, locks the filesystem to prevent race conditions (LOCK_EX), writes the fresh JSON file, and forces a safe PRG redirection (Post-Redirect-Get) back into the dashboard.
+
+### 3. Rendering Invoices (index.php & frontend.php)
+Calling index.php?data=invoice/invoice-YYMMDD01.json handles parsing the persistent file-layer safely. The controller validates path structures to prevent directory traversal exploits, maps local variable constraints, executes inline line-break conversions (lines_html), and builds a modern, pixel-perfect layout ideal for hard-copy printing or modern PDF exporting directly through web browser engines.# Find Nearest Taxi (PHP)
+
 Bi-lingual Translations Ready: Decoupled translation context stored within invoice_data.json parameters allows easy localization adjustments for document labels (Seller, Customer, VAT indicators, Payment instructions).
 
 Secure XSS Escaping out-of-the-box: Implements context-aware HTML entity sanitization (h() encapsulation wrappers) across templates to mitigate security vulnerabilities on untrusted inputs.
