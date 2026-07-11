@@ -31,6 +31,14 @@ Upon hitting Save Invoice, the system processes the raw input payloads (POST), s
 ### 3. Rendering Invoices (index.php & frontend.php)
 Calling index.php?data=invoice/invoice-YYMMDD01.json handles parsing the persistent file-layer safely. The controller validates path structures to prevent directory traversal exploits, maps local variable constraints, executes inline line-break conversions (lines_html), and builds a modern, pixel-perfect layout ideal for hard-copy printing or modern PDF exporting directly through web browser engines.# Find Nearest Taxi (PHP)
 
-Bi-lingual Translations Ready: Decoupled translation context stored within invoice_data.json parameters allows easy localization adjustments for document labels (Seller, Customer, VAT indicators, Payment instructions).
+## 🔗 Demo Links
 
-Secure XSS Escaping out-of-the-box: Implements context-aware HTML entity sanitization (h() encapsulation wrappers) across templates to mitigate security vulnerabilities on untrusted inputs.
+- [📜 FrontEnd](http://invoice.utmlink.tech)
+- [📜 Admin](http://invoice2.utmlink.tech)
+
+## 💻 Interface Screenshots
+
+Here is what the invoice generation system looks like in action:
+
+![Invoice Frontend Page](http://utmlink.tech/screenshot/invoce_frontend.png)
+![Invoice Main Page](http://utmlink.tech/screenshot/invoce_admin.png)
