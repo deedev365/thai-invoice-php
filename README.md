@@ -33,8 +33,8 @@ Calling index.php?data=invoice/invoice-YYMMDD01.json handles parsing the persist
 
 ## 🔗 Demo Links
 
-- [📜 FrontEnd](http://invoice.utmlink.tech)
-- [📜 Admin](http://invoice-admin.utmlink.tech)
+- [📜 FrontEnd Page](http://invoice.utmlink.tech)
+- [📜 Admin Panel](http://invoice-admin.utmlink.tech)
 
 ## 💻 Interface Screenshots
 
