@@ -1,12 +1,15 @@
-Thai Tax Invoice & Billing System
+# Thai Tax Invoice & Billing System
+
 A lightweight, self-contained PHP web application designed to manage, generate, and view compliant Thai Tax Invoices and Billing Documents. The system utilizes structured JSON files as a flat-file database, removing the need for a heavy relational database setup like MySQL, making it extremely fast and highly portable.
 
-🛠️ Tech Stack
+## 🛠️ Tech Stack
 Backend Engine: Pure PHP 8.x (Native File I/O, DateTimeImmutable workflows, JSON encoding/decoding matrices).
+
 Frontend Layer: Semantic HTML5 layouts optimized for clean user entry, utilizing CSS grid/flexbox components.
+
 Client Scripts: Vanilla JS (Zero dependencies) handling real-time sequential DOM modifications, automatic form reindexing, dynamic multi-item row generation, and real-time dates modifications.
 
-🚀 Features
+## 🚀 Features
 Flat-File JSON Architecture: No MySQL or external database required. Invoices are stored as independent, revision-friendly JSON data structures under the invoice/ directory.
 
 Automated Sequential Numbering: Dynamic ID generation (e.g., DL-YYMMDDXXX) that automatically tracks, calculates, and locks the next logical document number based on the current date and previously saved sequential sequences.
