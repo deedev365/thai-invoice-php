@@ -40,5 +40,5 @@ Calling index.php?data=invoice/invoice-YYMMDD01.json handles parsing the persist
 
 Here is what the invoice generation system looks like in action:
 
-![Invoice Frontend Page](http://utmlink.tech/screenshot/invoce_frontend.png)
-![Invoice Main Page](http://utmlink.tech/screenshot/invoce_admin.png)
+![Invoice Frontend Page](http://utmlink.tech/screenshot/invoice_frontend.png)
+![Invoice Main Page](http://utmlink.tech/screenshot/invoice_admin.png)
