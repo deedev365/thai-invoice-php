@@ -1,164 +1,31 @@
-<?php
-// Invoice DL-260503001 - Theyama Enterprise
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice</title>
+<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
 
-$defaultDataFile = __DIR__ . '/invoice_data.json';
-$storageDir = __DIR__ . '/invoice';
-$invoice = [];
+<div class="navbar">
+  <h1 class="navbar-title">Invoice</h1>
+  <div class="navbar-menu">
+    <a href="index.php" class="active">Invoice</a>
+    <a href="admin.php">Admin</a>
+  </div>
+</div>
 
-date_default_timezone_set('Asia/Bangkok');
+<div class="page-content">
+  <div class="toolbar" id="invoice-toolbar">
+    <button type="button" id="print-btn">🖨 Print / Save as PDF</button>
+    <a class="btn-link" id="admin-link" href="admin.php">Edit in admin</a>
+  </div>
 
-function clean_data_key($value)
-{
-    return trim((string) $value);
-}
+  <div class="page-wrapper" id="invoice-root" data-loading>Loading…</div>
+</div>
 
-function normalize_data_key($value, $defaultDataFile, $storageDir)
-{
-    $value = str_replace('\\', '/', clean_data_key($value));
-
-    if ($value === '' || $value === 'invoice_data.json') {
-        return [
-            'key' => 'invoice_data.json',
-            'path' => $defaultDataFile,
-        ];
-    }
-
-    if (preg_match('/^invoice\/([A-Za-z0-9._-]+\.json)$/', $value, $matches)) {
-        return [
-            'key' => 'invoice/' . $matches[1],
-            'path' => $storageDir . DIRECTORY_SEPARATOR . $matches[1],
-        ];
-    }
-
-    return [
-        'key' => 'invoice_data.json',
-        'path' => $defaultDataFile,
-    ];
-}
-
-function parse_invoice_date($value)
-{
-    $value = trim((string) $value);
-    $date = DateTimeImmutable::createFromFormat('!d/m/Y', $value);
-
-    if ($date instanceof DateTimeImmutable && $date->format('d/m/Y') === $value) {
-        return $date;
-    }
-
-    return new DateTimeImmutable('today');
-}
-
-function format_invoice_date(DateTimeImmutable $date)
-{
-    return $date->format('d/m/Y');
-}
-
-function credit_days($value)
-{
-    if (preg_match('/-?\d+/', (string) $value, $matches)) {
-        return max(0, (int) $matches[0]);
-    }
-
-    return 0;
-}
-
-function calculate_due_date($issueDate, $credit)
-{
-    return format_invoice_date(parse_invoice_date($issueDate)->modify('+' . credit_days($credit) . ' days'));
-}
-
-function invoice_date_code($issueDate)
-{
-    return parse_invoice_date($issueDate)->format('ymd');
-}
-
-function saved_invoice_files($storageDir)
-{
-    $files = is_dir($storageDir) ? glob($storageDir . DIRECTORY_SEPARATOR . 'invoice*.json') : [];
-    if (!is_array($files)) {
-        return [];
-    }
-
-    return array_values(array_filter($files, function ($path) {
-        return basename($path) !== 'invoice_data.json';
-    }));
-}
-
-function next_document_number($storageDir, $issueDate)
-{
-    $dateCode = invoice_date_code($issueDate);
-    $count = 0;
-    $maxSequence = 0;
-
-    foreach (saved_invoice_files($storageDir) as $path) {
-        $decoded = json_decode((string) file_get_contents($path), true);
-        if (!is_array($decoded)) {
-            continue;
-        }
-
-        $number = (string) ($decoded['document']['number'] ?? '');
-        $savedIssueDate = (string) ($decoded['document']['issue_date'] ?? '');
-        $filename = basename($path);
-        $matchesDate = false;
-
-        if (preg_match('/^invoice-' . preg_quote($dateCode, '/') . '(\d+)\.json$/', $filename, $matches)) {
-            $matchesDate = true;
-            $maxSequence = max($maxSequence, (int) $matches[1]);
-        } elseif (preg_match('/^DL-' . preg_quote($dateCode, '/') . '(\d+)$/', $number, $matches)) {
-            $matchesDate = true;
-            $maxSequence = max($maxSequence, (int) $matches[1]);
-        } elseif ($savedIssueDate !== '' && invoice_date_code($savedIssueDate) === $dateCode) {
-            $matchesDate = true;
-        }
-
-        if ($matchesDate) {
-            $count++;
-        }
-    }
-
-    $nextSequence = max($count, $maxSequence) + 1;
-
-    return 'DL-' . $dateCode . str_pad((string) $nextSequence, 3, '0', STR_PAD_LEFT);
-}
-
-$selectedData = normalize_data_key($_GET['data'] ?? '', $defaultDataFile, $storageDir);
-if (!is_file($selectedData['path'])) {
-    $selectedData = normalize_data_key('', $defaultDataFile, $storageDir);
-}
-
-if (is_file($selectedData['path'])) {
-    $decoded = json_decode((string) file_get_contents($selectedData['path']), true);
-    if (is_array($decoded)) {
-        $invoice = $decoded;
-    }
-}
-
-$invoice['document']['issue_date'] = format_invoice_date(parse_invoice_date($invoice['document']['issue_date'] ?? ''));
-$invoice['document']['credit'] = (string) credit_days($invoice['document']['credit'] ?? 0);
-$invoice['document']['due_date'] = calculate_due_date($invoice['document']['issue_date'], $invoice['document']['credit']);
-if ($selectedData['key'] === 'invoice_data.json') {
-    $invoice['document']['issue_date'] = format_invoice_date(new DateTimeImmutable('today'));
-    $invoice['document']['due_date'] = calculate_due_date($invoice['document']['issue_date'], $invoice['document']['credit']);
-    $invoice['document']['number'] = next_document_number($storageDir, $invoice['document']['issue_date']);
-}
-
-function h($value)
-{
-    return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
-}
-
-function lines_html($value)
-{
-    $lines = preg_split("/\r\n|\n|\r/", (string) $value);
-    $html = '';
-
-    foreach ($lines as $line) {
-        $html .= '<div>' . h($line) . '</div>';
-    }
-
-    return $html;
-}
-
-$title = h($invoice['document']['title']) . ' - ' . h($invoice['document']['number']);
-include ('frontend.php');
-?>
+<script src="js/invoice-render.js"></script>
+<script src="js/frontend.js"></script>
+</body>
+</html>
