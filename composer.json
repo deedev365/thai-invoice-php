@@ -1,0 +1,13 @@
+{
+  "name": "invoice/app",
+  "description": "Thai invoice generator with auto-calculations",
+  "require": {
+    "php": ">=8.1"
+  },
+  "autoload": {
+    "files": [
+      "lib.php",
+      "auth.php"
+    ]
+  }
+}

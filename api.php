@@ -13,8 +13,7 @@
 //   POST api.php?action=duplicate            -> { ok, key, action, invoice }
 //        body: { "source_data": "<key>" }
 
-require __DIR__ . '/lib.php';
-require __DIR__ . '/auth.php';
+require __DIR__ . '/vendor/autoload.php';
 
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');

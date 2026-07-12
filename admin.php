@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/auth.php';
+require __DIR__ . '/vendor/autoload.php';
 require_admin_page();
 ?>
 <!doctype html>

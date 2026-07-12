@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/auth.php';
+require __DIR__ . '/vendor/autoload.php';
 
 // Build a safe, same-app redirect target (defends against open redirects by
 // stripping any host and only honouring admin.php with its query string).
