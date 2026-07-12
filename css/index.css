@@ -16,6 +16,58 @@
     font-size: 13px;
     color: #222;
     background: #e8e8e8;
+    padding: 0;
+    margin: 0;
+  }
+
+  .navbar {
+    background: var(--primary-orange);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .navbar-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+  }
+
+  .navbar-menu {
+    display: flex;
+    gap: 10px;
+  }
+
+  .navbar-menu a,
+  .navbar-menu button {
+    appearance: none;
+    border: 1px solid rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .navbar-menu a:hover,
+  .navbar-menu button:hover {
+    background: rgba(255,255,255,0.25);
+  }
+
+  .navbar-menu a.active {
+    background: rgba(255,255,255,0.3);
+    border-color: rgba(255,255,255,0.6);
+  }
+
+  .page-content {
     padding: 20px;
   }
 
@@ -23,6 +75,40 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+  }
+
+  .toolbar {
+    width: 794px;
+    max-width: 100%;
+    margin: 0 auto 16px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .toolbar button,
+  .toolbar .btn-link {
+    appearance: none;
+    border: 1px solid var(--primary-orange);
+    border-radius: 6px;
+    padding: 9px 16px;
+    font: 600 13px/1 'Sarabun', sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .toolbar button {
+    background: var(--primary-orange);
+    color: #fff;
+  }
+
+  .toolbar button:hover { background: #d3701c; }
+
+  .toolbar .btn-link {
+    background: #fff;
+    color: var(--primary-orange);
   }
 
   .page {
@@ -42,8 +128,21 @@
     margin-bottom: 18px;
   }
 
-  .logo-area { width: 90px; }
-  .logo-area img { width: 80px; }
+  .logo-area { min-width: 90px; max-width: 240px; }
+  .logo-area img { max-width: 140px; max-height: 90px; object-fit: contain; }
+
+  /* Text mark used when the seller has no logo image — driven by seller data. */
+  .logo-text {
+    display: inline-flex;
+    align-items: center;
+    max-width: 240px;
+    padding: 8px 12px;
+    border: 1.5px solid var(--primary-orange);
+    color: var(--primary-orange);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.25;
+  }
 
   .logo-fallback {
     width: 80px;
@@ -339,4 +438,5 @@
     body { background: #fff; padding: 0; }
     .page { box-shadow: none; margin: 0; }
     .page-wrapper { gap: 0; }
+    .toolbar { display: none !important; }
   }
