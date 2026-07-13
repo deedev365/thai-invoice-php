@@ -88,5 +88,5 @@ Configuration is in [phpunit.xml](phpunit.xml); tests cover totals calculation, 
 
 Here is what the invoice generation system looks like in action:
 
-![Invoice Frontend Page](http://utmlink.tech/screenshot/invoice_frontend.png)
-![Invoice Main Page](http://utmlink.tech/screenshot/invoice_admin.png)
+![Invoice Frontend Page](http://utmlink.tech/screenshot/invoice-frontend.png)
+![Invoice Main Page](http://utmlink.tech/screenshot/invoice-admin.png)
